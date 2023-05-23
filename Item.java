@@ -7,12 +7,13 @@ public class Item implements Comparable<Item> {
   private int date;
   private int month;
   private String day;
+  private LocalDate fullDate;
 
   public Item(String name, int month, int date) {
     this.name = name;
     this.date = date;
     this.month = month;
-    LocalDate fullDate = LocalDate.of(2023, month, date);
+    fullDate = LocalDate.of(2023, month, date);
     day = fullDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
   }
 
@@ -25,34 +26,22 @@ public class Item implements Comparable<Item> {
     return name;
   };
 
-  public void setName(String name) {
-    this.name = name;
-  };
-
   public int getDate() {
 
     return date;
 
   };
 
-  public void setDate(int date) {
-    this.date = date;
-  };
-
   public int getMonth() {
     return month;
-  };
-
-  public void setMonth(int month) {
-    this.month = month;
   };
 
   public String getDay() {
     return day;
   };
 
-  public void setMonth(String day) {
-    this.day = day;
+  public LocalDate getFulLDate() {
+    return fullDate;
   };
 
   @Override

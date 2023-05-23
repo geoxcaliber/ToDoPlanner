@@ -25,7 +25,7 @@ public class GUI implements ActionListener {
   private JList<String> list = new JList<>(listModel);
   private JScrollPane scrollPane = new JScrollPane(list);
 
-  private Planner obj = new Planner();
+  private List obj = new List();
   private String name;
   private int month;
   private int date;
@@ -56,6 +56,7 @@ public class GUI implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    Week myWeek = Week.findWeek();
     if (e.getSource() == text) {
       if (nameLabel.getText().equals("Name:")) {
         name = text.getText();
@@ -83,7 +84,7 @@ public class GUI implements ActionListener {
       textPanel.add(scrollPane, BorderLayout.CENTER);
       for (Month month : obj.getFolders()) {
         for (Item item : month.getTaskList()) {
-          if (obj.fallsWithinRange(item)) {
+          if ((myWeek.isInWeek(item.getFulLDate()))) {
             listModel.addElement(item.toString());
           }
         }
